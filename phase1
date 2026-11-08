@@ -1,0 +1,283 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{array,tabularx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm
+]{geometry}
+\usepackage{mathtools}
+
+\title{Peluang}
+\author{Satria A.}
+\date{November 8th, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Daftar Isi}
+\begin{enumerate}
+    \item Kaidah Pencacahan
+    \begin{enumerate}
+        \item Kaidah Pengisian Tempat
+        \item Permutasi dan Kombinasi
+    \end{enumerate}
+    \item Peluang Suatu Kejadian dan Kejadian Majemuk
+    \begin{enumerate}
+        \item Peluang Suatu Kejadian
+        \item Kejadian Majemuk
+        \item Peluang Bersyarat dan Kejadian Saling Bebas
+    \end{enumerate}
+    \item Soal Aneka Ragam
+\end{enumerate}
+
+\section{Kaidah Pencacahan, Permutasi, dan Kombinasi}
+
+Pada awalnya, pencacahan berkaitan dengan keperluan untuk menghitung berapa banyak benda yang dimiliki seseorang. Seiring dengan perkembangannya, pencacahan dilakukan untuk berbagai keperluan lain. Pencacahan dalam konteks peluang berkaitan dengan kemungkian yang dapat terjadi, seperti diperlihatkan pada ilustrasi berikut.
+
+\begin{enumerate}
+    \item{
+    Seorang siswi SMA memiliki dua buah tas dan tiga pasang sepatu. Jika ia setiap hari memakai satu pasang sepatu dan satu buah tas saja, berapakah cara penampilan yang mungkin?
+    }
+    \item{
+    Seorang pengusaha memiliki sebuah mobil sedan, sebuah mibul penumpang dan sebuah mobil pengangkut barang yang setiap harinya digunakan secara bersamaan. Jika ia mempunyai tiga sopir yang dapat mengemudikan semua mobil itu, berapa banyak cara penugasan kepada tiga sopir tersebut?
+    }
+    \item{
+    Peringatan kemerdekaan di suatu kota akan dimeriahkan dengan kompetisi sepak bola yang diikuti lima kesebelasan. Jika setiap kesebelasan bertemu satu kali dengan kesebelasan lainnya ditambah dengan babak final antara juara dan peringkat kedua, berapa banyak pertandingan yang dapat ditonton?
+    }
+\end{enumerate}
+
+Masalah pertama berkaitan dengan aturan pengisian tempat yang tersedia dan solusinya 6 cara, yaitu perkalian dari banyak tas dan sepatu. Masalah kedua berkaitan dengan permutasi dan solusinya juga 6 cara karena ketiga sopir bertugas secara bersamaan. Masalah ketiga berkaitan dengan kombinasi dan solusinya 10 cara ditambah babak final sechingga ada 11 pertandingan.
+
+\subsection{Kaidah Pengisian Tempat}
+
+Untuk memahami kaidah pengisian tempat, perhatikan kembali masalah dalam ilustrasi berikut yang serupa dengan di atas.
+
+\subsubsection*{Ilustrasi 1}
+
+Kita dapat melihat cara penampilan seseorang dilihat dari tas dan sepatu yang dipakainya secara bersamaan.
+
+\begin{enumerate}
+    \item{
+    Jika seseorang memiliki sebuah tas $t_1$ dan sepasang sepatu $s_1$, maka cara penampilannya hanya satu cara, yaitu $(t_1,s_1)$.
+    }
+    \item{
+    Jika seseorang memiliki sebuah tas $t_1$ dan dua pasang sepatu $s_1$ dan $s_2$, maka cara penampilannya dapat dengan dua cara, yaitu $(t_1,s_1)$ dan $(t_1,s_2)$.
+    }
+    \item{
+    Jika seseorang memiliki dua buah tas $t_1$ dan $t_2$ serta sepasang sepatu $s_1$, maka cara penampilannya dapat dengan dua cara, yaitu $(t_1,s_1)$ dan $(t_2,s_1)$.
+    }
+    \item{
+    Jika seseorang memiliki dua buah tas $t_1$ dan $t_2$ serta dua pasang sepatu $s_1$ dan $s_2$, maka cara penampilannya dapat dengan empat cara. yaitu $(t_1,s_1)$, $(t_1,s_2)$, $(t_2,s_1)$, dan $(t_2,s_2)$.
+    }
+    \item{
+    Jika seseorang memiliki dua buah tas $t_1$ dan $t_2$ serta tiga pasang sepatu $s_1$, $s_2$ dan $s_3$, maka cara penampilannya dapat dengan enam cara, yaitu $(t_1,s_1)$, $(t_1,s_2)$, $(t_2,s_1)$, $(t_2,s_2)$, dan $t_2,s_3$.
+    }
+    \item{
+    Jika seseorang memiliki tiga buah tas $t_1$, $t_2$, dan $t_3$ serta dua pasang sepatu $s_1$ dan $s_2$, maka cara penampilannya dapat dengan enam cara, yaitu $(t_1,s_1)$, $(t_1,s_2)$, $(t_2,s_1)$, $(t_2,s_2)$, dan $t_3,s_2$.
+    }
+\end{enumerate}
+
+Perhatikan cara pengisian tempat untuk tas dan sepatu pada keenam kasus ini.
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ccccc}
+    
+    \hline
+    & \multicolumn{2}{c}{\textbf{Banyak}} & \textbf{Banyak} & \textbf{Kaitan} \\
+    & \textbf{tas} & \textbf{sepatu} & \textbf{cara} & \textbf{hasil} \\ \hline
+    \textbf{Kasus 1:} & $1$ & $1$ & $1$ & $1=1 \times 1$ \\ \hline
+    \textbf{Kasus 2:} & $1$ & $2$ & $2$ & $2=1 \times 2$ \\ \hline
+    \textbf{Kasus 3:} & $2$ & $1$ & $2$ & $2=2 \times 1$ \\ \hline
+    \textbf{Kasus 4:} & $2$ & $2$ & $4$ & $4=2 \times 2$ \\ \hline
+    \textbf{Kasus 5:} & $2$ & $3$ & $6$ & $6=2 \times 3$ \\ \hline
+    \textbf{Kasus 6:} & $3$ & $2$ & $6$ & $6=3 \times 2$ \\ \hline
+    
+    \end{tabular}
+    \label{tab:placeholder}
+\end{table}
+
+\subsubsection*{Kaidah Pengisian Tempat (\textit{Filling Slots})}
+
+\begin{itemize}
+    \item{
+    Jika seseorang memiliki $n$ buah tas dan $m$ pasang sepatu, maka cara penampilannya ada $k$ cara yang diperoleh dengan $$\boxed{n \times m = k}$$ dengan $n,m,k\in \mathbb{N}$.
+    }
+\end{itemize}
+
+\textit{"And perhaps, posterity will thank me for having shown it that the ancients did not know everything."}
+
+\textbf{---Pierre de Fermat (1601--1665)}
+
+\subsection{Permutasi dan Kombinasi}
+
+Permutasi adalah pengaturan sejumlah berhingga objek tanpa pengulangan, yang dipilih dari sejumlah berhingga objek lain yang lebih besar atau sama banyak dari objek yang diatur.
+
+\subsubsection*{Notasi Faktorial}
+
+Simbol $n!$ dengan $n$ bilangan asli, dibaca "$n$ faktorial", digunakan untuk menyatakan perkalian dari $n$ sampai bilangan asli pertama, yaitu 
+$$n!=1\cdot 2\cdot 3\cdot ... \cdot n\text{ atau } n!=n(n-1)!$$
+Jika $n=0$, kita definisikan $0!=1$
+
+\subsubsection*{Ilustrasi 2}
+
+\begin{enumerate}
+    \item{
+    $5!=5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$
+    }
+    \item{
+    $3!(7-5)!=3! \cdot 2! = 6 \cdot 2 = 12$
+    }
+    \item{
+    $\frac{4!}{0!}=\frac{1 \cdot 2 \cdot 3 \cdot 4}{1}=\frac{24}{1}=24$
+    }
+\end{enumerate}
+
+\subsubsection*{Contoh 1}
+
+Seorang pengusaha memiliki sebuah mobil sedan, sebuah mobil penumpang, dan sebuah mobil pengangkat barang yang setiap harinya digunakan secara bersamaan dengan dikemudikan oleh karyawan kantor tersebut.
+
+\begin{enumerate}
+    \item{
+    Jika di kantor terdapat 3 karyawan yang mampu mengemudikan mobil, berapa banyak cara penugasan kepada pengemudi tersebut?
+    }
+    \item{
+    Jika di kantor terdapat 4 karyawan yang mampu mengemudikan mobil, berapa banyak cara penugasan kepada pengemudi tersebut?
+    }
+    \item{
+    Jika di kantor terdapat 5 karyawan yang mampu mengemudikan mobil, berapa banyak cara penugasan kepada pengemudi tersebut?
+    }
+\end{enumerate}
+
+\subsubsection*{Solusi 1  |  \textit{Filling Slots Principle}}
+
+\begin{enumerate}
+    \item{% NOMOR 1
+    Terdapat tiga mobil yang harus dikemudikan oleh $3$ karyawan.
+    \begin{enumerate}
+    
+        \item{% BAGIAN A
+        Mobil pertama dapat dikemudikan oleh salah satu dari $3$ karyawan, sehingga pemilihan pengemudinya dapat dilakukan dengan $\boxed{\textbf{$3$ cara}}$.
+        }
+        
+        \item{% BAGIAN B
+        Mobil kedua hanya dapat dikemudikan oleh salah satu dari $2$ karyawan yang tersisa, sehingga pemilihan pengemudinya hanya dapat dilakukan dengan $\boxed{\textbf{$3-1=2$ cara}}$.
+        }
+        
+        \item{% BAGIAN C
+        Mobil ketiga hanya dapat dikemudikan oleh $1$ karyawan yang tersisa, sehingga pemilihan pengemudinya hanya dapat dilakukan dengan $\boxed{\textbf{$2-1=1$ cara}}$.
+
+        \[
+        \begin{array}{cccccc}
+        \textbf{Mobil 1} && \textbf{Mobil 2} && \textbf{Mobil 3} & \textbf{Total} \\
+        \boxed{3} &\times& \boxed{2} &\times& \boxed{1} & \boxed{\textbf{$=12$ cara}} \\
+        \end{array}
+        \]
+        
+        }
+    \end{enumerate}
+    }
+    \item{% NOMOR 2
+    Terdapat tiga mobil yang harus dikemudikan oleh $4$ karyawan.
+    \begin{enumerate}
+    
+        \item{% BAGIAN A
+        Mobil pertama dapat dikemudikan oleh salah satu dari $4$ karyawan, sehingga pemilihan pengemudinya dapat dilakukan dengan $\boxed{\textbf{$4$ cara}}$.
+        }
+        
+        \item{% BAGIAN B
+        Mobil kedua hanya dapat dikemudikan oleh salah satu dari $3$ karyawan yang tersisa, sehingga pemilihan pengemudinya hanya dapat dilakukan dengan $\boxed{\textbf{$4-1=3$ cara}}$.
+        }
+        
+        \item{% BAGIAN C
+        Mobil ketiga hanya dapat dikemudikan oleh salah satu dari $3$ karyawan yang tersisa, sehingga pemilihan pengemudinya hanya dapat dilakukan dengan $\boxed{\textbf{$3-1=2$ cara}}$.
+
+        \[
+        \begin{array}{cccccc}
+        \textbf{Mobil 1} && \textbf{Mobil 2} && \textbf{Mobil 3} & \textbf{Total} \\
+        \boxed{4} &\times& \boxed{3} &\times& \boxed{2} & \boxed{\textbf{$=24$ cara}} \\
+        \end{array}
+        \]
+        
+        }
+    \end{enumerate}
+    }
+    \item{% NOMOR 3
+    Terdapat tiga mobil yang harus dikemudikan oleh $5$ karyawan.
+    \begin{enumerate}
+    
+        \item{% BAGIAN A
+        Mobil pertama dapat dikemudikan oleh salah satu dari $5$ karyawan, sehingga pemilihan pengemudinya dapat dilakukan dengan $\boxed{\textbf{$5$ cara}}$.
+        }
+        
+        \item{% BAGIAN B
+        Mobil kedua hanya dapat dikemudikan oleh salah satu dari $4$ karyawan yang tersisa, sehingga pemilihan pengemudinya hanya dapat dilakukan dengan $\boxed{\textbf{$5-1=4$ cara}}$.
+        }
+        
+        \item{% BAGIAN C
+        Mobil ketiga hanya dapat dikemudikan oleh $3$ karyawan yang tersisa, sehingga pemilihan pengemudinya hanya dapat dilakukan dengan $\boxed{\textbf{$4-1=3$ cara}}$.
+
+        \[
+        \begin{array}{cccccc}
+        \textbf{Mobil 1} && \textbf{Mobil 2} && \textbf{Mobil 3} & \textbf{Total} \\
+        \boxed{5} &\times& \boxed{4} &\times& \boxed{3} & \boxed{\textbf{$=60$ cara}} \\
+        \end{array}
+        \]
+        
+        }
+    \end{enumerate}
+    }
+\end{enumerate}
+
+\subsubsection*{Solusi 2  |  Permutasi}
+
+\begin{enumerate}
+    \item{
+    Penugasan kepada $3$ karyawan untuk mengemudikan $3$ kendaraan dapat dilakukan dengan $3!=6$ cara.
+    }
+    \item{
+    Penugasan kepada $4$ karyawan untuk mengemudikan $3$ kendaraan dapat dilakukan dengan $24$ cara. Jika dikaitkan dengan informasi soal ini dan notasi faktorial, maka diperoleh
+    $$24=\frac{4!}{(4-3)!}=\frac{4!}{1!}=\frac{4 \cdot 3 \cdot 2 \cdot 1}{1}.$$
+    }
+    \item{
+    Penugasan kepada $5$ karyawan untuk mengemudikan $3$ kendaraan dapat dilakukan dengan $60$ cara. Jika dikaitkan dengan informasi soal ini dan notasi faktorial, maka diperoleh
+    $$60=\frac{5!}{(5-3)!}= \frac{5!}{2!} =\frac{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}{2 \cdot 1}.$$
+    }
+\end{enumerate}
+
+\subsubsection*{Pembuktian 1 - Permutasi}
+
+\begin{enumerate}
+    \item{\textbf{Pahami Persoalan}
+
+    Misalkan terdapat $n$ objek berbeda. Kita ingin mengambil dan menyusun sebanyak $r$ objek dari seluruh objek tersebut.
+
+    Dalam permutasi:
+    \begin{enumerate}
+        \item{
+        Urutan objek diperhatikan.
+        }
+        \item{
+        Objek yang sudah dipilih tidak boleh dipilih lagi.
+        }
+    \end{enumerate}
+    }
+    \item{\textbf{Menggunakan Kaidah Perkalian}
+
+    
+    }
+\end{enumerate}
+
+\end{document}
